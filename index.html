@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fuge1618 · Detalles del taller</title>
+<meta name="description" content="Objetos que diseño, imprimo y pruebo en mi taller. Kort: el soporte de celular de 3 mm que vive en tu billetera.">
+<meta property="og:title" content="fuge1618 · Detalles del taller">
+<meta property="og:description" content="Objetos que diseño, imprimo y pruebo en mi taller.">
+<meta property="og:image" content="https://fuge1618.com/r/hero.jpg">
+<meta property="og:url" content="https://fuge1618.com/">
+<meta name="theme-color" content="#F4EFE7">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#F4EFE7; --lamina:#ECE5DA; --blanco:#FBF8F3; --tinta:#1D1D1B; --gris:#6B645A; --linea:#DDD5C8; --papaya:#FF8000; --madera:#2B2620;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --m:clamp(16px,4vw,40px); --r:16px; --ancho:1240px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;overflow-x:clip}
+body{background:var(--papel);color:var(--tinta);font:400 17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,video{display:block;max-width:100%}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{letter-spacing:-.025em;text-wrap:balance}
+:focus-visible{outline:2px solid var(--papaya);outline-offset:3px}
+.env{max-width:var(--ancho);margin:0 auto;padding:0 var(--m)}
+.mono{font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--gris)}
+.eti{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.bloque{padding:clamp(56px,9vw,120px) 0}
+.vista{display:none}.vista.activa{display:block}
+
+/* botones */
+.btn{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;font:500 14px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:16px 22px;border-radius:10px;border:1.5px solid var(--tinta);text-align:center}
+.btn.lleno{background:var(--tinta);color:var(--papel)}
+.btn.lleno:hover{background:#000}
+.btn.claro{background:var(--blanco);border-color:var(--blanco);color:var(--tinta)}
+.btn.borde:hover{background:var(--tinta);color:var(--papel)}
+.btn:focus-visible{outline:2px solid var(--papaya);outline-offset:3px}
+.btn .fl::after{content:"↳";font-family:var(--mono)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+/* barra + cabecera */
+.barra{background:var(--madera);color:#EFE7DA;text-align:center;font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:11px var(--m)}
+.barra b{color:var(--papaya);font-weight:500}
+.cab{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--papel) 92%,transparent);backdrop-filter:blur(8px)}
+.cab .env{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:68px}
+.marca{display:flex;text-decoration:none}
+.marca svg{height:22px;width:auto}
+.hamb{all:unset;cursor:pointer;width:44px;height:44px;display:grid;place-items:center}
+.hamb span{display:block;width:30px;height:2.5px;background:var(--tinta);border-radius:2px;box-shadow:0 8px 0 var(--tinta);transform:translateY(-4px);transition:.2s}
+.menu-abierto .hamb span{box-shadow:none;transform:rotate(45deg)}
+.menu-abierto .hamb span::after{content:"";display:block;width:30px;height:2.5px;background:var(--tinta);border-radius:2px;transform:rotate(-90deg)}
+.lado{display:flex;justify-content:flex-end;gap:8px}
+.bolsa{all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;border:1.5px solid var(--tinta);border-radius:10px;padding:8px 14px;font:500 13px/1 var(--mono);letter-spacing:.08em}
+.cuenta-b{all:unset;cursor:pointer;width:36px;height:36px;border:1.5px solid var(--tinta);border-radius:50%;display:grid;place-items:center;font:500 13px/1 var(--mono)}
+.cuenta-b.lleno{background:var(--papaya);border-color:var(--papaya);color:#fff}
+.menu{position:fixed;inset:0;z-index:25;background:var(--papel);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.menu-abierto .menu{opacity:1;pointer-events:auto}
+.menu nav{display:grid;gap:6px;text-align:center}
+.menu a{font:700 clamp(40px,10vw,76px)/1.1 var(--sans);letter-spacing:-.04em;text-transform:uppercase;text-decoration:none}
+.menu a:hover,.menu a[aria-current]{color:var(--papaya)}
+.menu .pie-menu{position:absolute;bottom:32px;left:0;right:0;text-align:center}
+
+/* home: portada */
+.portada{position:relative;border-radius:var(--r);overflow:hidden;height:min(86vh,820px);min-height:520px;background:var(--madera);margin-top:8px}
+.portada img{width:100%;height:100%;object-fit:cover}
+.portada::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,29,27,0) 45%,rgba(29,29,27,.62))}
+.portada .txt{position:absolute;left:clamp(22px,5vw,64px);bottom:clamp(28px,5vw,64px);right:22px;z-index:1;color:#F7F1E8}
+.portada h1{font:700 clamp(54px,10vw,128px)/.92 var(--sans);letter-spacing:-.05em;text-transform:uppercase}
+.portada .btn{margin-top:28px}
+
+.manifiesto{text-align:center;max-width:22ch;margin:0 auto;font:500 clamp(28px,4.4vw,52px)/1.12 var(--sans);letter-spacing:-.03em}
+.manifiesto em{font-style:normal;color:var(--papaya)}
+.manifiesto + .mono{display:block;text-align:center;margin-top:22px}
+
+.titulo{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.titulo h2{font:500 clamp(30px,4vw,48px)/1.05 var(--sans);letter-spacing:-.035em}
+
+/* carrusel */
+.carrusel{display:grid;grid-auto-flow:column;grid-auto-columns:min(84%,420px);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--m);padding:0 var(--m) 8px;margin:0 calc(-1*var(--m));scrollbar-width:none}
+.carrusel::-webkit-scrollbar{display:none}
+.prod{scroll-snap-align:start;display:flex;flex-direction:column}
+.prod .foto{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:var(--lamina)}
+.prod .foto img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.prod:hover .foto img{transform:scale(1.025)}
+.chip{position:absolute;left:16px;top:16px;background:var(--papaya);color:#fff;font:500 13px/1 var(--sans);padding:9px 14px;border-radius:99px}
+.chip.gris{background:var(--blanco);color:var(--tinta)}
+.prod h3{font:600 20px/1.2 var(--sans);text-transform:uppercase;letter-spacing:-.01em;margin-top:18px}
+.prod .precio{font:600 20px/1 var(--sans);margin-top:10px}
+.prod .precio s{color:var(--gris);font-weight:500;margin-right:8px}
+.prod p.d{margin-top:10px;font-size:17px;color:#3A352E;flex:1}
+.prod .acc{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.prod .acc .btn{padding:14px 10px;font-size:13px}
+
+/* por qué */
+.porque{position:relative;border-radius:var(--r);overflow:hidden;background:var(--madera);color:#F7F1E8}
+.porque img{width:100%;height:min(88vh,860px);min-height:560px;object-fit:cover;opacity:.92}
+.porque .arriba{position:absolute;left:clamp(22px,5vw,64px);top:clamp(24px,4vw,48px)}
+.porque .abajo{position:absolute;left:clamp(22px,5vw,64px);right:22px;bottom:clamp(28px,5vw,64px)}
+.porque h2{font:700 clamp(44px,7.5vw,96px)/.95 var(--sans);letter-spacing:-.045em;text-transform:uppercase;max-width:12ch}
+.porque .btn{margin-top:26px}
+.dato{background:var(--lamina);border-radius:var(--r);padding:clamp(28px,5vw,64px);margin-top:20px}
+.dato h3{font:700 clamp(26px,3.6vw,40px)/1.08 var(--sans);text-transform:uppercase;letter-spacing:-.03em;max-width:18ch;margin-top:18px}
+.dato p{font-size:clamp(17px,1.7vw,20px);line-height:1.55;max-width:56ch;margin-top:20px;color:#3A352E}
+.dato p b{color:var(--tinta)}
+
+/* bitácora */
+.notas{display:grid;gap:20px}
+.nota{position:relative;display:block;border-radius:var(--r);overflow:hidden;aspect-ratio:5/4;background:var(--madera);text-decoration:none;color:#F7F1E8}
+.nota img{width:100%;height:100%;object-fit:cover}
+.nota::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,29,27,.35),rgba(29,29,27,0) 35%,rgba(29,29,27,.65))}
+.nota .eti{position:absolute;left:clamp(20px,4vw,40px);top:clamp(20px,4vw,36px);z-index:1}
+.nota h3{position:absolute;left:clamp(20px,4vw,40px);right:20px;bottom:clamp(22px,4vw,40px);z-index:1;font:500 clamp(30px,4.2vw,52px)/1.04 var(--sans);letter-spacing:-.035em}
+.nota.vacia{background:repeating-linear-gradient(135deg,var(--lamina) 0 14px,var(--linea) 14px 15px);color:var(--tinta)}
+.nota.vacia::after{display:none}
+
+.cierre{text-align:center}
+.cierre h2{font:700 clamp(40px,7vw,92px)/.95 var(--sans);letter-spacing:-.045em;text-transform:uppercase}
+.cierre .btn{margin-top:34px}
+
+.video-full{position:relative;border-radius:var(--r);overflow:hidden;background:var(--madera);height:min(90vh,880px);min-height:560px}
+.video-full video{width:100%;height:100%;object-fit:cover}
+.video-full .txt{position:absolute;left:clamp(22px,5vw,64px);top:clamp(28px,6vw,72px);color:#1D1D1B}
+.video-full h2{font:700 clamp(46px,8vw,104px)/.92 var(--sans);letter-spacing:-.045em;text-transform:uppercase}
+.video-full p{font:500 14px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-top:18px;max-width:30ch}
+
+.uso{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.uso img{width:100%;aspect-ratio:4/7;object-fit:cover;border-radius:var(--r)}
+
+.suscribir{max-width:720px}
+.suscribir h2{font:700 clamp(24px,3vw,34px)/1.1 var(--sans);text-transform:uppercase;letter-spacing:-.02em}
+.suscribir p{margin-top:12px;color:#3A352E}
+.suscribir form{display:grid;gap:14px;margin-top:28px}
+.campo{all:unset;box-sizing:border-box;border:1.5px solid var(--tinta);border-radius:12px;padding:20px 24px;font:400 18px/1 var(--sans);background:transparent}
+.campo::placeholder{color:#6B645A}
+.suscribir .btn{justify-self:start;min-width:min(100%,420px)}
+
+/* pie */
+.pie{padding:clamp(48px,7vw,96px) 0 32px;border-top:1px solid var(--linea)}
+.cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 24px}
+.cols h4{font:700 20px/1.2 var(--sans);text-transform:uppercase;margin:0 0 18px;letter-spacing:-.01em}
+.cols a{display:block;text-decoration:none;font-size:20px;margin-bottom:10px}
+.cols a:hover{color:var(--papaya)}
+.logo-grande{margin:clamp(56px,8vw,110px) 0 28px}
+.logo-grande svg{width:100%;height:auto}
+.pie small{font-size:15px}
+
+/* tienda */
+.tienda-cab{text-align:center;padding:clamp(56px,9vw,120px) 0 clamp(40px,6vw,72px)}
+.tienda-cab h1{font:700 clamp(46px,8vw,104px)/.92 var(--sans);letter-spacing:-.045em;text-transform:uppercase}
+.tienda-cab p{max-width:30ch;margin:22px auto 0;font-size:clamp(18px,2vw,22px);line-height:1.4}
+.lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:56px 24px;padding-bottom:clamp(56px,8vw,112px)}
+
+/* producto */
+.prod-pag{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start;padding-top:16px}
+.galeria .principal{position:relative;aspect-ratio:1;border-radius:var(--r);overflow:hidden;background:var(--lamina)}
+.galeria .principal img{width:100%;height:100%;object-fit:cover;transition:opacity .25s}
+.galeria .cota{position:absolute;left:16px;bottom:14px;background:var(--blanco);padding:6px 10px;border-radius:8px}
+.tira{display:flex;gap:12px;overflow-x:auto;padding:16px 0 4px;scrollbar-width:none}
+.tira::-webkit-scrollbar{display:none}
+.tira button{all:unset;cursor:pointer;flex:0 0 92px;aspect-ratio:1;border-radius:12px;overflow:hidden;opacity:.55;border:2px solid transparent}
+.tira button[aria-current="true"]{opacity:1;border-color:var(--tinta)}
+.tira button img{width:100%;height:100%;object-fit:cover}
+.ficha{background:var(--lamina);border-radius:var(--r);padding:clamp(24px,3.5vw,44px);position:sticky;top:84px}
+.ficha h1{font:500 clamp(46px,6vw,76px)/.98 var(--sans);letter-spacing:-.045em}
+.ficha .sub{margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.chips span{font:500 13px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;background:var(--blanco);padding:12px 16px;border-radius:99px}
+.ficha .txt p{font-size:19px;line-height:1.5;margin-top:20px}
+.ficha .txt p.cita{font-size:16px;color:#3A352E;border-left:2px solid var(--papaya);padding-left:12px}
+.opciones{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin-top:26px}
+.opcion{all:unset;cursor:pointer;border:1.5px solid var(--linea);background:var(--blanco);padding:14px 16px;border-radius:12px;display:grid;gap:4px}
+.opcion b{font-weight:600}
+.opcion[aria-pressed="true"]{border-color:var(--tinta)}
+.elige{margin-top:18px}
+.elige .mono{display:block;margin-bottom:10px}
+.colores{display:flex;flex-wrap:wrap;gap:8px}
+.color{all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;border:1.5px solid var(--linea);background:var(--blanco);padding:8px 12px;border-radius:99px;font-size:14px}
+.color[aria-pressed="true"]{border-color:var(--tinta)}
+.color i{display:flex}.color i b{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.18);margin-left:-4px}
+.color i b:first-child{margin-left:0}
+.compra{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;margin-top:24px}
+.cant{display:flex;align-items:center;border:1.5px solid var(--tinta);border-radius:10px}
+.cant button{all:unset;cursor:pointer;width:42px;text-align:center;font:500 18px/1 var(--mono);padding:14px 0}
+.cant span{min-width:24px;text-align:center;font-family:var(--mono)}
+.compra .btn{width:100%;font-size:14px;white-space:nowrap;padding:16px 12px}
+.envio{text-align:center;font-size:14px;color:#3A352E;margin-top:18px;line-height:1.6}
+.envio a{color:var(--tinta)}
+.caja{background:var(--lamina);border-radius:var(--r);padding:clamp(24px,4vw,48px);margin-top:20px}
+.caja h2{font:500 clamp(26px,3.4vw,38px)/1.1 var(--sans);text-align:center;letter-spacing:-.03em}
+.caja .uso{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:28px}
+.caja .uso img{aspect-ratio:4/7}
+.desp{margin-top:28px}
+details{border-bottom:2px solid var(--papaya);padding:22px 0}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font:500 clamp(22px,2.6vw,30px)/1.2 var(--sans);letter-spacing:-.02em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";width:40px;height:40px;border-radius:50%;background:var(--blanco);display:grid;place-items:center;font:400 22px/1 var(--mono);flex:0 0 40px}
+details[open] summary::after{content:"–"}
+details .cont{padding-top:16px;color:#3A352E;font-size:17px;max-width:62ch}
+details .cont p+p{margin-top:10px}
+.pasos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.pasos figure{margin:0}
+.pasos video{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px}
+.pasos figcaption{font:500 13px/1.4 var(--mono);margin-top:8px;color:var(--tinta)}
+.tabla{width:100%;border-collapse:collapse;font-size:15px}
+.tabla th,.tabla td{text-align:left;padding:10px 0;border-bottom:1px solid var(--linea)}
+.tabla th{font-weight:400;color:var(--gris);width:46%}
+.tabla td{font-family:var(--mono);font-size:14px;color:var(--tinta)}
+.rasgos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.rasgo video{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r)}
+.rasgo h3{font:600 20px/1.2 var(--sans);margin-top:14px}
+.rasgo p{color:#3A352E;font-size:16px;margin-top:6px}
+
+/* páginas simples */
+.pag-cab{padding:clamp(48px,8vw,104px) 0 clamp(32px,5vw,56px)}
+.pag-cab h1{font:700 clamp(46px,8vw,104px)/.92 var(--sans);letter-spacing:-.045em;text-transform:uppercase}
+.pag-cab p{max-width:46ch;margin-top:20px;font-size:clamp(18px,2vw,21px);line-height:1.5;color:#3A352E}
+.pendiente{border:1.5px dashed var(--gris);border-radius:var(--r);padding:28px;color:var(--gris);font:500 14px/1.6 var(--mono)}
+.dos{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.dos img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r)}
+.carta p{font-size:19px;line-height:1.65;color:#3A352E;margin-top:16px;max-width:44ch}
+.proceso{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.proceso div{background:var(--lamina);border-radius:var(--r);padding:24px}
+.proceso .n{font:500 13px/1 var(--mono);color:var(--papaya)}
+.proceso h3{font:600 20px/1.2 var(--sans);margin:12px 0 8px}
+.proceso p{font-size:15px;color:#3A352E}
+
+/* carrito */
+.velo{position:fixed;inset:0;background:rgba(29,29,27,.38);opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
+.carrito{position:fixed;top:0;right:0;height:100%;width:min(440px,100%);background:var(--papel);z-index:41;transform:translateX(100%);transition:transform .25s;display:grid;grid-template-rows:auto 1fr auto}
+.carrito{visibility:hidden}.carro-abierto .velo{opacity:1;pointer-events:auto}.carro-abierto .carrito{transform:none;visibility:visible}
+.carrito .c-cab{display:flex;justify-content:space-between;align-items:center;padding:20px var(--m);border-bottom:1px solid var(--linea)}
+.carrito .c-cab strong{font:700 18px/1 var(--sans);text-transform:uppercase}
+.cerrar{all:unset;cursor:pointer;font:400 24px/1 var(--mono);padding:4px 8px}
+.items{overflow:auto;padding:8px var(--m)}
+.item{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--linea)}
+.item img{width:72px;height:72px;object-fit:cover;border-radius:10px}
+.item .q{display:flex;gap:8px;align-items:center;margin-top:8px}
+.item .q button{all:unset;cursor:pointer;border:1.5px solid var(--linea);border-radius:6px;width:26px;text-align:center;font-family:var(--mono)}
+.item .quitar{all:unset;cursor:pointer;color:var(--gris);font-size:13px;text-decoration:underline}
+.c-pie{padding:20px var(--m) 28px;border-top:1.5px solid var(--tinta);display:grid;gap:14px}
+.c-pie .total{display:flex;justify-content:space-between;align-items:baseline}
+.c-pie .total strong{font:600 26px/1 var(--sans)}
+.vacio{color:var(--gris);padding:28px 0}
+
+@media (max-width:900px){
+  .prod-pag,.dos{grid-template-columns:minmax(0,1fr)}
+  .ficha{position:static}
+  .cols{grid-template-columns:1fr 1fr}
+  .proceso,.rasgos{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .bolsa{padding:8px 11px}
+  .marca svg{height:19px}
+  .caja .uso{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .pasos{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .rasgos{grid-template-columns:1fr}
+  .proceso{grid-template-columns:1fr}
+  .tira button{flex-basis:76px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="barra" id="barra">Diseñado y hecho en Argentina</div>
+<header class="cab">
+  <div class="env">
+    <a class="marca" href="#inicio" aria-label="fuge1618, inicio"><svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 62 630 115"><g fill="none" stroke="#1d1d1b" stroke-width="12.70" stroke-linecap="round"><path d="M26.35 143.65 A60.05 60.05 0 0 1 86.40 83.60 H135.64"/></g><path fill="none" stroke="#FF8000" stroke-width="12.70" stroke-linecap="round" d="M80.39 106.42 H115.22 A37.23 37.23 0 0 1 152.45 143.65"/><path d="M219.72 95.41 L207.90 95.41 L207.90 91.16 C207.90 86.86 209.75 84.42 214.55 84.42 C216.64 84.42 218.30 84.86 219.37 85.20 L221.97 75.34 C220.30 74.75 216.69 73.83 212.20 73.83 C202.83 73.83 195.25 79.30 195.25 90.19 L195.25 95.41 L185.25 95.41 L185.25 105.38 L195.25 105.38 L195.25 150.00 L207.90 150.00 L207.90 105.38 L219.72 105.38 L219.72 95.41 Z M248.58 150.69 C256.48 150.69 262.20 146.88 265.47 139.06 L265.58 150.00 L277.64 150.00 L277.64 95.41 L264.89 95.41 L264.89 127.39 C264.89 135.30 260.00 139.89 253.26 139.89 C246.62 139.89 242.58 135.50 242.58 128.17 L242.58 95.41 L229.87 95.41 L229.87 130.12 C229.87 143.27 237.34 150.69 248.58 150.69 Z M314.65 171.58 C329.34 171.58 340.19 164.75 340.19 150.14 L340.19 95.41 L327.73 95.41 L327.73 104.44 L327.05 104.44 C325.09 100.58 320.95 94.72 311.28 94.72 C298.69 94.72 288.72 104.64 288.72 122.56 C288.72 140.33 298.64 149.17 311.19 149.17 C320.61 149.17 324.61 144.19 326.56 140.23 L327.64 140.23 L327.64 150.53 C327.64 158.34 322.47 161.92 314.59 161.92 C306.64 161.92 303.26 158.16 301.56 155.08 L290.83 158.94 C293.56 166.16 301.51 171.58 314.65 171.58 Z M314.75 139.16 C306.25 139.16 301.70 132.52 301.70 122.45 C301.70 112.55 306.15 105.17 314.75 105.17 C323.14 105.17 327.69 112.11 327.69 122.45 C327.69 132.91 323.05 139.16 314.75 139.16 Z M377.78 151.12 C389.94 151.12 398.44 145.31 401.08 136.47 L389.40 134.08 C387.69 138.72 383.50 141.16 377.92 141.16 C369.78 141.16 364.25 135.98 363.92 126.27 L401.90 126.27 L401.90 122.27 C401.90 103.12 390.28 94.72 376.95 94.72 C361.33 94.72 351.26 106.25 351.26 123.05 C351.26 140.14 361.33 151.12 377.78 151.12 Z M363.97 117.62 C364.55 110.34 369.23 104.69 377.00 104.69 C384.56 104.69 388.81 109.81 389.55 117.62 L363.97 117.62 Z M437.69 77.25 L423.23 77.25 L407.26 88.67 L407.26 101.08 L424.25 88.86 L424.75 88.86 L424.75 150.00 L437.69 150.00 L437.69 77.25 Z M477.72 150.98 C493.39 150.98 503.89 140.28 503.89 125.97 C503.89 112.16 494.08 102.25 481.33 102.25 C473.51 102.25 466.69 106.00 463.22 112.30 L462.67 112.30 C462.67 96.88 468.34 87.55 478.50 87.55 C484.80 87.55 489.05 91.27 490.40 96.83 L503.20 96.83 C501.64 85.02 492.08 76.27 478.50 76.27 C461.06 76.27 449.98 90.88 449.98 115.72 C449.98 142.38 463.84 150.98 477.72 150.98 Z M477.67 140.38 C469.90 140.38 464.14 133.94 464.14 126.27 C464.14 118.70 470.09 112.25 477.81 112.25 C485.58 112.25 491.25 118.36 491.25 126.22 C491.25 134.17 485.39 140.38 477.67 140.38 Z M543.94 77.25 L529.48 77.25 L513.51 88.67 L513.51 101.08 L530.50 88.86 L531.00 88.86 L531.00 150.00 L543.94 150.00 L543.94 77.25 Z M583.19 150.98 C598.90 150.98 610.19 142.33 610.19 130.52 C610.19 121.44 603.45 113.81 595.00 112.36 L595.00 111.91 C602.37 110.25 607.50 103.61 607.50 95.75 C607.50 84.56 597.15 76.27 583.19 76.27 C569.12 76.27 558.87 84.56 558.87 95.75 C558.87 103.61 563.90 110.25 571.42 111.91 L571.42 112.36 C562.78 113.81 556.23 121.44 556.23 130.52 C556.23 142.33 567.36 150.98 583.19 150.98 Z M583.19 140.92 C574.94 140.92 569.61 136.33 569.61 129.59 C569.61 122.61 575.33 117.62 583.19 117.62 C590.95 117.62 596.72 122.61 596.72 129.59 C596.72 136.38 591.34 140.92 583.19 140.92 Z M583.19 107.77 C576.40 107.77 571.61 103.38 571.61 97.02 C571.61 90.72 576.25 86.52 583.19 86.52 C590.01 86.52 594.76 90.72 594.76 97.02 C594.76 103.38 589.87 107.77 583.19 107.77 Z" fill="#1d1d1b"/></svg></a>
+    <button class="hamb" id="hamb" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span></button>
+    <div class="lado"><a class="bolsa" href="https://ig.me/m/fuge.1618" style="text-decoration:none">CONSULTAR</a></div>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <nav aria-label="Principal">
+    <a href="#tienda" data-ruta="tienda">Tienda</a>
+    <a href="#taller" data-ruta="taller">Taller</a>
+    <a href="#bitacora" data-ruta="bitacora">Bitácora</a>
+    <a href="#preguntas" data-ruta="preguntas">Preguntas</a>
+  </nav>
+  <p class="mono pie-menu">fuge1618 · Detalles del taller</p>
+</div>
+
+
+
+<main>
+<!-- ================= INICIO ================= -->
+<section class="vista" id="v-inicio" aria-label="Inicio">
+  <div class="env">
+    <div class="portada">
+      <picture><source media="(max-width:700px)" srcset="r/hero_m.jpg"><img src="r/hero.jpg" alt="Tres Kort cerrados, negro, gris y blanco, sobre la mesa de madera del taller"></picture>
+      <div class="txt">
+        <h1>Detalles<br>del taller.</h1>
+        <a class="btn claro" href="#tienda">Ver objetos <span class="fl"></span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="env bloque">
+    <p class="manifiesto">Soy técnico. Cuando algo no me cierra, lo resuelvo en el taller a mi manera. <em>Lo que queda bien, sale de acá.</em></p>
+    <span class="mono">— fuge1618</span>
+  </div>
+
+  <div class="env">
+    <div class="titulo"><h2>Salido del taller</h2><a class="btn borde" href="#tienda">Ver todo <span class="fl"></span></a></div>
+    <div class="carrusel" id="carrusel"></div>
+  </div>
+
+  <div class="env bloque">
+    <div class="porque">
+      <img src="r/negra.jpg" alt="Kort negro cerrado, de perfil sobre la mesa">
+      <span class="eti arriba">Por qué el Kort es distinto</span>
+      <div class="abajo">
+        <h2>3 mm. Cabe donde va tu tarjeta.</h2>
+        <a class="btn claro" href="#kort">Ver el Kort <span class="fl"></span></a>
+      </div>
+    </div>
+    <div class="dato">
+      <span class="eti mono">Para los que se fijan en los detalles</span>
+      <h3>Una sola pieza. Cuatro trabas. Cero tornillos.</h3>
+      <p>Los soportes plegables suelen tener bisagras de metal, piezas sueltas o imanes. El Kort no: está impreso de una vez, con las articulaciones ya armadas. Se abre desde la pestaña, traba con un clic en tres ángulos y se vuelve a cerrar plano.</p>
+      <p><b>Pesa 14 gramos.</b> Lo llevás todos los días y no te enterás.</p>
+    </div>
+  </div>
+
+  <div class="env">
+    <div class="titulo"><h2>Bitácora</h2><a class="btn borde" href="#bitacora">Leer todo <span class="fl"></span></a></div>
+    <div class="notas" id="notas-home"></div>
+  </div>
+
+  <div class="env bloque cierre">
+    <h2>Probado en mi mesa.<br>Todos los días.</h2>
+    <a class="btn lleno" href="#tienda">Ver objetos <span class="fl"></span></a>
+  </div>
+
+  <div class="env">
+    <div class="video-full">
+      <video src="vc/hero.mp4" poster="vc/hero.jpg" autoplay muted loop playsinline aria-label="Video: el Kort se abre"></video>
+      <div class="txt"><h2>Es una<br>tarjeta.</h2><p>Hasta que la necesitás.</p></div>
+    </div>
+  </div>
+
+  <div class="env bloque">
+    <div class="titulo"><h2>En uso</h2><a class="btn borde" href="https://www.instagram.com/fuge.1618/">@fuge.1618 <span class="fl"></span></a></div>
+    <div class="uso">
+      <img src="r/uso_m.jpg" alt="Dos celulares apoyados en Kort sobre la mesa">
+      <img src="r/billetera.jpg" alt="Kort blanco asomando de la billetera">
+      <img src="r/abierta_blanca.jpg" alt="Kort blanco abierto">
+      <img src="r/pareja.jpg" alt="Tres Kort superpuestos">
+    </div>
+  </div>
+
+  <div style="height:clamp(56px,9vw,120px)"></div>
+</section>
+
+<!-- ================= TIENDA ================= -->
+<section class="vista" id="v-tienda" aria-label="Tienda">
+  <div class="env">
+    <div class="tienda-cab">
+      <h1>Salido<br>del taller</h1>
+      <p>Objetos que diseño, imprimo y pruebo yo. Pocos, bien resueltos y con datos honestos.</p>
+    </div>
+    <div class="lista" id="lista"></div>
+  </div>
+</section>
+
+<!-- ================= KORT ================= -->
+<section class="vista" id="v-kort" aria-label="Kort">
+  <div class="env">
+    <div class="prod-pag">
+      <div class="galeria">
+        <div class="principal"><img id="foto" alt=""><span class="mono cota">52 × 83 × 3 mm</span></div>
+        <div class="tira" id="tira" role="group" aria-label="Fotos"></div>
+      </div>
+      <div class="ficha">
+        <span class="eti mono">01 · HCP · nov 2026</span>
+        <h1 style="margin-top:10px">Kort</h1>
+        <div class="chips"><span>3 mm cerrado</span><span>3 ángulos con clic</span><span>Una sola pieza</span></div>
+        <div class="txt">
+          <p>Un soporte de celular del tamaño de una tarjeta. Vive en tu billetera y se abre cuando lo necesitás.</p>
+          <p class="cita">“Me cansé de no tener dónde apoyar el celular. Tenía que vivir en la billetera.”</p>
+        </div>
+        <div class="opciones" role="group" aria-label="Presentación">
+          <button class="opcion" aria-pressed="true" data-op="1"><b>Individual</b><span class="mono">$8.000</span></button>
+          <button class="opcion" aria-pressed="false" data-op="3"><b>Pack de 3</b><span class="mono">$20.000 · ahorrás $4.000</span></button>
+        </div>
+        <div class="elige" id="elige"></div>
+        <div class="compra" style="grid-template-columns:minmax(0,1fr)">
+          <a class="btn lleno" id="consultar" href="https://ig.me/m/fuge.1618">Consultar · <span id="monto">$8.000</span></a>
+        </div>
+        <p class="envio">La tienda online está en camino. Por ahora, escribime por Instagram y lo coordinamos.<br><a href="#preguntas">Cómo comprar</a></p>
+      </div>
+    </div>
+
+    <div class="caja">
+      <h2>Así se ve en la mesa</h2>
+      <div class="uso">
+        <img src="r/uso_m.jpg" alt="Celulares apoyados en Kort">
+        <img src="r/billetera.jpg" alt="Kort en la billetera">
+        <img src="r/abierta_negra.jpg" alt="Kort negro abierto">
+      </div>
+      <div class="desp">
+        <details><summary>Por qué funciona</summary><div class="cont"><p>Está impreso de una sola vez, con las articulaciones ya armadas: no hay bisagras de metal ni piezas que se pierdan. Cuatro trabas con clic: tres para apoyar y una central que lo mantiene cerrado en la billetera.</p><p>Funciona horizontal o vertical, con celulares, e-readers y plegables.</p></div></details>
+        <details><summary>Cómo se usa</summary><div class="cont">
+          <div class="pasos">
+            <figure><video src="vc/gesto.mp4" poster="vc/gesto.jpg" muted loop playsinline preload="none" aria-label="Abrir"></video><figcaption>1 · Abrí desde la pestaña</figcaption></figure>
+            <figure><video src="vc/posiciones.mp4" poster="vc/posiciones.jpg" muted loop playsinline preload="none" aria-label="Elegir posición"></video><figcaption>2 · Clic en el ángulo</figcaption></figure>
+            <figure><video src="vc/listo.mp4" poster="vc/listo.jpg" muted loop playsinline preload="none" aria-label="Apoyar el celular"></video><figcaption>3 · Apoyá el celular</figcaption></figure>
+          </div>
+        </div></details>
+        <details><summary>Qué trae</summary><div class="cont"><p>El Kort envuelto en su faja de papel. El pack de 3 viene en una sola faja.</p></div></details>
+        <details><summary>Medidas y material</summary><div class="cont">
+          <table class="tabla">
+            <tr><th>Cerrado</th><td>52 × 83 × 3 mm</td></tr>
+            <tr><th>Peso</th><td>≈ 14 g</td></tr>
+            <tr><th>Material</th><td>PLA</td></tr>
+            <tr><th>Ángulos</th><td>83° · 74° · 68°</td></tr>
+            <tr><th>Trabas</th><td>4 con clic</td></tr>
+            <tr><th>Fabricación</th><td>impresión 3D en Argentina</td></tr>
+          </table>
+          <p style="margin-top:12px">Es PLA: no lo dejes al sol dentro del auto ni cerca de una fuente de calor.</p>
+        </div></details>
+      </div>
+    </div>
+
+    <div class="bloque" style="padding-bottom:clamp(40px,6vw,80px)">
+      <div class="titulo"><h2>En movimiento</h2></div>
+      <div class="rasgos">
+        <div class="rasgo"><video src="vc/billetera.mp4" poster="vc/billetera.jpg" autoplay muted loop playsinline aria-label="Entra en la billetera"></video><h3>Entra en tu billetera</h3><p>Cerrado mide 3 mm. Va con tus tarjetas y no se nota.</p></div>
+        <div class="rasgo"><video src="vc/orientacion.mp4" poster="vc/orientacion.jpg" autoplay muted loop playsinline aria-label="Horizontal o vertical"></video><h3>Horizontal o vertical</h3><p>Para una serie acostado o una videollamada parado.</p></div>
+        <div class="rasgo"><video src="vc/colores.mp4" poster="vc/colores.jpg" autoplay muted loop playsinline aria-label="Ocho colores"></video><h3>Ocho colores</h3><p>Y cuatro paletas pensadas para el pack de 3.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BITÁCORA ================= -->
+<section class="vista" id="v-bitacora" aria-label="Bitácora">
+  <div class="env">
+    <div class="pag-cab"><h1>Bitácora</h1><p>Cada objeto que sale del taller tiene una historia: qué me molestaba, cómo lo resolví y cuántas versiones hicieron falta.</p></div>
+    <div class="notas" id="notas-todas" style="padding-bottom:clamp(56px,8vw,112px)"></div>
+  </div>
+</section>
+
+<!-- ================= TALLER ================= -->
+<section class="vista" id="v-taller" aria-label="Taller">
+  <div class="env">
+    <div class="pag-cab"><h1>El taller</h1></div>
+    <div class="dos">
+      <div class="carta">
+        <h2 style="font:500 clamp(30px,4vw,46px)/1.05 var(--sans);letter-spacing:-.035em">No soy artista.<br>Soy técnico.</h2>
+        <p>Pero cada cosa que sale de mi mesa tiene una razón y una forma de resolverla que es mía. Diseño en 3D, imprimo, pruebo, rompo y vuelvo a probar.</p>
+        <p>Hoy es casi todo impresión 3D; mañana puede ser madera, metal o algo con electrónica. Lo que no cambia es el criterio.</p>
+      </div>
+      <img src="r/tres.jpg" alt="Tres Kort de distintos colores sobre la mesa">
+    </div>
+    <div class="bloque">
+      <div class="titulo"><h2>Cómo sale un objeto</h2></div>
+      <div class="proceso">
+        <div><span class="n">01</span><h3>Algo no me cierra</h3><p>Un problema chico de todos los días.</p></div>
+        <div><span class="n">02</span><h3>Lo dibujo al milímetro</h3><p>Modelo en 3D y defino cada medida.</p></div>
+        <div><span class="n">03</span><h3>Pruebo hasta que anda</h3><p>Imprimo versiones y corrijo. El Kort llegó a la décima.</p></div>
+        <div><span class="n">04</span><h3>Si vale, sale</h3><p>Solo lo que resuelve bien llega a la tienda.</p></div>
+      </div>
+    </div>
+    <div style="height:clamp(56px,8vw,112px)"></div>
+  </div>
+</section>
+
+<!-- ================= PREGUNTAS ================= -->
+<section class="vista" id="v-preguntas" aria-label="Preguntas">
+  <div class="env" style="max-width:860px">
+    <div class="pag-cab"><h1>Preguntas</h1></div>
+    <div class="desp" style="margin:0 0 clamp(56px,8vw,112px)">
+      <details><summary>¿Cómo compro?</summary><div class="cont"><p>La tienda online está en camino. Mientras tanto, <a href="https://ig.me/m/fuge.1618">escribime por Instagram</a> con el objeto, el color y tu código postal, y lo coordinamos.</p></div></details>
+      <details><summary>¿Hacen envíos?</summary><div class="cont"><p>Sí, por Correo Argentino a todo el país. El costo depende de tu código postal: te lo paso cuando me escribís.</p></div></details>
+      <details><summary>¿Venden a comercios?</summary><div class="cont"><p>Sí. <a href="https://ig.me/m/fuge.1618">Escribime</a> y te cuento las condiciones.</p></div></details>
+      <details><summary>¿Hacen colores a pedido?</summary><div class="cont"><p>Sí, con otro precio y más plazo. Escribime con lo que buscás.</p></div></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pie">
+  <div class="env">
+    <div class="cols">
+      <div><h4>Tienda</h4><a href="#tienda">Objetos</a><a href="#kort">Kort</a></div>
+      <div><h4>Taller</h4><a href="#taller">Quién hace esto</a><a href="#bitacora">Bitácora</a></div>
+      <div><h4>Ayuda</h4><a href="#preguntas">Preguntas</a><a href="#preguntas">Envíos</a></div>
+      <div><h4>Seguir</h4><a href="https://www.instagram.com/fuge.1618/">Instagram</a><a href="https://www.tiktok.com/@fuge.1618">TikTok</a></div>
+    </div>
+    <div class="logo-grande" aria-hidden="true"><svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 62 630 115"><g fill="none" stroke="#1d1d1b" stroke-width="12.70" stroke-linecap="round"><path d="M26.35 143.65 A60.05 60.05 0 0 1 86.40 83.60 H135.64"/></g><path fill="none" stroke="#FF8000" stroke-width="12.70" stroke-linecap="round" d="M80.39 106.42 H115.22 A37.23 37.23 0 0 1 152.45 143.65"/><path d="M219.72 95.41 L207.90 95.41 L207.90 91.16 C207.90 86.86 209.75 84.42 214.55 84.42 C216.64 84.42 218.30 84.86 219.37 85.20 L221.97 75.34 C220.30 74.75 216.69 73.83 212.20 73.83 C202.83 73.83 195.25 79.30 195.25 90.19 L195.25 95.41 L185.25 95.41 L185.25 105.38 L195.25 105.38 L195.25 150.00 L207.90 150.00 L207.90 105.38 L219.72 105.38 L219.72 95.41 Z M248.58 150.69 C256.48 150.69 262.20 146.88 265.47 139.06 L265.58 150.00 L277.64 150.00 L277.64 95.41 L264.89 95.41 L264.89 127.39 C264.89 135.30 260.00 139.89 253.26 139.89 C246.62 139.89 242.58 135.50 242.58 128.17 L242.58 95.41 L229.87 95.41 L229.87 130.12 C229.87 143.27 237.34 150.69 248.58 150.69 Z M314.65 171.58 C329.34 171.58 340.19 164.75 340.19 150.14 L340.19 95.41 L327.73 95.41 L327.73 104.44 L327.05 104.44 C325.09 100.58 320.95 94.72 311.28 94.72 C298.69 94.72 288.72 104.64 288.72 122.56 C288.72 140.33 298.64 149.17 311.19 149.17 C320.61 149.17 324.61 144.19 326.56 140.23 L327.64 140.23 L327.64 150.53 C327.64 158.34 322.47 161.92 314.59 161.92 C306.64 161.92 303.26 158.16 301.56 155.08 L290.83 158.94 C293.56 166.16 301.51 171.58 314.65 171.58 Z M314.75 139.16 C306.25 139.16 301.70 132.52 301.70 122.45 C301.70 112.55 306.15 105.17 314.75 105.17 C323.14 105.17 327.69 112.11 327.69 122.45 C327.69 132.91 323.05 139.16 314.75 139.16 Z M377.78 151.12 C389.94 151.12 398.44 145.31 401.08 136.47 L389.40 134.08 C387.69 138.72 383.50 141.16 377.92 141.16 C369.78 141.16 364.25 135.98 363.92 126.27 L401.90 126.27 L401.90 122.27 C401.90 103.12 390.28 94.72 376.95 94.72 C361.33 94.72 351.26 106.25 351.26 123.05 C351.26 140.14 361.33 151.12 377.78 151.12 Z M363.97 117.62 C364.55 110.34 369.23 104.69 377.00 104.69 C384.56 104.69 388.81 109.81 389.55 117.62 L363.97 117.62 Z M437.69 77.25 L423.23 77.25 L407.26 88.67 L407.26 101.08 L424.25 88.86 L424.75 88.86 L424.75 150.00 L437.69 150.00 L437.69 77.25 Z M477.72 150.98 C493.39 150.98 503.89 140.28 503.89 125.97 C503.89 112.16 494.08 102.25 481.33 102.25 C473.51 102.25 466.69 106.00 463.22 112.30 L462.67 112.30 C462.67 96.88 468.34 87.55 478.50 87.55 C484.80 87.55 489.05 91.27 490.40 96.83 L503.20 96.83 C501.64 85.02 492.08 76.27 478.50 76.27 C461.06 76.27 449.98 90.88 449.98 115.72 C449.98 142.38 463.84 150.98 477.72 150.98 Z M477.67 140.38 C469.90 140.38 464.14 133.94 464.14 126.27 C464.14 118.70 470.09 112.25 477.81 112.25 C485.58 112.25 491.25 118.36 491.25 126.22 C491.25 134.17 485.39 140.38 477.67 140.38 Z M543.94 77.25 L529.48 77.25 L513.51 88.67 L513.51 101.08 L530.50 88.86 L531.00 88.86 L531.00 150.00 L543.94 150.00 L543.94 77.25 Z M583.19 150.98 C598.90 150.98 610.19 142.33 610.19 130.52 C610.19 121.44 603.45 113.81 595.00 112.36 L595.00 111.91 C602.37 110.25 607.50 103.61 607.50 95.75 C607.50 84.56 597.15 76.27 583.19 76.27 C569.12 76.27 558.87 84.56 558.87 95.75 C558.87 103.61 563.90 110.25 571.42 111.91 L571.42 112.36 C562.78 113.81 556.23 121.44 556.23 130.52 C556.23 142.33 567.36 150.98 583.19 150.98 Z M583.19 140.92 C574.94 140.92 569.61 136.33 569.61 129.59 C569.61 122.61 575.33 117.62 583.19 117.62 C590.95 117.62 596.72 122.61 596.72 129.59 C596.72 136.38 591.34 140.92 583.19 140.92 Z M583.19 107.77 C576.40 107.77 571.61 103.38 571.61 97.02 C571.61 90.72 576.25 86.52 583.19 86.52 C590.01 86.52 594.76 90.72 594.76 97.02 C594.76 103.38 589.87 107.77 583.19 107.77 Z" fill="#1d1d1b"/></svg></div>
+    <small>fuge1618 · Detalles del taller · Diseñado y hecho en Argentina</small>
+  </div>
+</footer>
+
+<script>
+const COLORES={Papaya:'#FF8000',Negro:'#1E1E1E',Blanco:'#EDEBE6',Gris:'#8A8D91',Arena:'#CDBA9A',Oliva:'#6B7A4B','Azul marino':'#26364F',Rojo:'#B3262B'};
+const PALETAS={Firma:['Papaya','Negro','Blanco'],Grafito:['Negro','Gris','Blanco'],Tierra:['Oliva','Arena','Negro'],'Náutico':['Azul marino','Rojo','Arena']};
+const SLUG={Papaya:'papaya',Negro:'negro',Blanco:'blanco',Gris:'gris',Arena:'arena',Oliva:'oliva','Azul marino':'azul',Rojo:'rojo',Grafito:'grafito',Tierra:'tierra',Firma:'firma','Náutico':'nautico'};
+const PRECIO={1:8000,3:20000};
+const pesos=n=>'$'+n.toLocaleString('es-AR');
+const PRODUCTOS=[
+  {id:'kort-1',nombre:'Kort',foto:'r/abierta_negra.jpg',precio:8000,d:'Soporte de celular de 3 mm que vive en tu billetera.',op:1,v:'Papaya'},
+  {id:'kort-3',nombre:'Kort · pack de 3',foto:'v/t/p3_firma_1abanico.jpg',precio:20000,antes:24000,chip:'Ahorrás $4.000',d:'Tres Kort en una paleta pensada para combinar.',op:3,v:'Firma'},
+  {id:'rast',nombre:'Rast',foto:'r/rast.jpg',chip:'Pronto',gris:true,d:'Posavasos con su base. Todavía en el taller.'}
+];
+const NOTAS=[
+  {eti:'01 · Kort · nov 2026',t:'Una tarjeta que se convierte en soporte: diez versiones hasta que el clic sonara bien',img:'r/billetera.jpg',href:'#kort'},
+  {eti:'02 · Rast',t:'Posavasos · próximamente',vacia:true},
+  {eti:'03 · En la mesa',t:'Algo con pantalla · próximamente',vacia:true}
+];
+// tarjetas de producto
+function tarjeta(p){
+  const precio=p.precio?`<p class="precio">${p.antes?`<s>${pesos(p.antes)}</s>`:''}${pesos(p.precio)}</p>`:'<p class="precio" style="color:var(--gris)">Pronto</p>';
+  const acc=p.precio?`<div class="acc"><a class="btn borde" href="#kort" data-op="${p.op}">Ver más <span class="fl"></span></a><a class="btn lleno" href="https://ig.me/m/fuge.1618">Consultar</a></div>`:`<div class="acc"><a class="btn borde" href="#bitacora">Historia <span class="fl"></span></a><button class="btn lleno" disabled>Pronto</button></div>`;
+  return `<article class="prod"><a class="foto" href="${p.precio?'#kort':'#bitacora'}" ${p.precio?`data-op="${p.op}"`:''}><img src="${p.foto}" alt="${p.nombre}">${p.chip?`<span class="chip${p.gris?' gris':''}">${p.chip}</span>`:''}</a><h3>${p.nombre}</h3>${precio}<p class="d">${p.d}</p>${acc}</article>`;
+}
+document.getElementById('carrusel').innerHTML=PRODUCTOS.map(tarjeta).join('');
+document.getElementById('lista').innerHTML=PRODUCTOS.map(tarjeta).join('');
+const nota=n=>n.vacia?`<div class="nota vacia"><span class="eti">${n.eti}</span><h3>${n.t}</h3></div>`:`<a class="nota" href="${n.href}"><img src="${n.img}" alt=""><span class="eti">${n.eti}</span><h3>${n.t}</h3></a>`;
+document.getElementById('notas-home').innerHTML=NOTAS.slice(0,1).map(nota).join('');
+document.getElementById('notas-todas').innerHTML=NOTAS.map(nota).join('');
+
+// ficha Kort
+const TOMAS={1:[['1billetera','En la billetera'],['2abierta','Abierto'],['3empaque','En su faja']],3:[['1abanico','Los tres'],['2mezcla','Uno abierto'],['3empaque','En su faja']]};
+const REALES=[['r/billetera.jpg','Foto real · billetera'],['r/abierta_blanca.jpg','Foto real · abierto'],['r/uso_m.jpg','Foto real · en uso']];
+let op=1,color='Papaya',paleta='Firma',toma=0,cant=1;
+const foto=document.getElementById('foto'),tira=document.getElementById('tira'),elige=document.getElementById('elige');
+const base=()=>op===1?'v/t/ind_'+SLUG[color]:'v/t/p3_'+SLUG[paleta];
+function fotos(){const b=base();return TOMAS[op].map(t=>[b+'_'+t[0]+'.jpg',b+'_'+t[0]+'_m.jpg',t[1]]).concat(REALES.map(r=>[r[0],r[0],r[1]]))}
+function galeria(){
+  const f=fotos();if(toma>=f.length)toma=0;
+  foto.style.opacity=.4;const im=new Image();im.onload=()=>{foto.src=f[toma][0];foto.style.opacity=1};im.src=f[toma][0];
+  foto.alt=(op===1?'Kort '+color:'Pack de 3 '+paleta)+' · '+f[toma][2];
+  tira.innerHTML=f.map((x,i)=>`<button aria-current="${i===toma}" data-i="${i}" aria-label="${x[2]}"><img src="${x[1]}" alt=""></button>`).join('');
+}
+tira.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;toma=+b.dataset.i;galeria()});
+function pintar(){
+  document.querySelectorAll('.opcion').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.op===op)));
+  if(op===1){elige.innerHTML='<span class="mono">Color · '+color+'</span><div class="colores">'+Object.entries(COLORES).map(([n,c])=>`<button class="color" aria-pressed="${n===color}" data-c="${n}"><i><b style="background:${c}"></b></i>${n}</button>`).join('')+'</div>'}
+  else{elige.innerHTML='<span class="mono">Paleta · '+PALETAS[paleta].join(', ')+'</span><div class="colores">'+Object.entries(PALETAS).map(([n,cs])=>`<button class="color" aria-pressed="${n===paleta}" data-p="${n}"><i>${cs.map(c=>`<b style="background:${COLORES[c]}"></b>`).join('')}</i>${n}</button>`).join('')+'</div>'}
+  document.getElementById('monto').textContent=pesos(PRECIO[op]*cant);
+    galeria();
+}
+document.querySelectorAll('.opcion').forEach(b=>b.addEventListener('click',()=>{op=+b.dataset.op;toma=0;pintar()}));
+elige.addEventListener('click',e=>{const b=e.target.closest('.color');if(!b)return;if(b.dataset.c)color=b.dataset.c;if(b.dataset.p)paleta=b.dataset.p;pintar()});
+document.addEventListener('click',e=>{const a=e.target.closest('[data-op]');if(a&&a.tagName==='A'){op=+a.dataset.op;toma=0;pintar()}});
+// videos de "cómo se usa": arrancan al abrir
+document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>d.querySelectorAll('video').forEach(v=>d.open?v.play().catch(()=>{}):v.pause())));
+
+// menú
+const hamb=document.getElementById('hamb');
+function menu(v){document.body.classList.toggle('menu-abierto',v);hamb.setAttribute('aria-expanded',String(v));hamb.setAttribute('aria-label',v?'Cerrar menú':'Abrir menú');document.getElementById('menu').setAttribute('aria-hidden',String(!v))}
+hamb.onclick=()=>menu(!document.body.classList.contains('menu-abierto'));
+document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>menu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape')menu(false)});
+
+// barra que alterna
+const MSJ=['Diseñado y hecho en Argentina','Tienda online <b>próximamente</b>','Consultas por <b>Instagram</b>'];let mi=0;
+setInterval(()=>{mi=(mi+1)%MSJ.length;document.getElementById('barra').innerHTML=MSJ[mi]},4000);
+
+// rutas
+const RUTAS=['inicio','tienda','kort','bitacora','taller','preguntas'];
+function ir(){
+  const h=(location.hash||'#inicio').slice(1),v=RUTAS.includes(h)?h:'inicio';
+  document.querySelectorAll('.vista').forEach(s=>s.classList.toggle('activa',s.id==='v-'+v));
+  document.querySelectorAll('#menu a').forEach(a=>{if(a.dataset.ruta===v||(v==='kort'&&a.dataset.ruta==='tienda'))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  window.scrollTo(0,0);
+}
+addEventListener('hashchange',ir);
+pintar();ir();
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelectorAll('video[autoplay]').forEach(v=>{v.removeAttribute('autoplay');v.pause()});
+</script>
+</body>
+</html>
