@@ -250,6 +250,22 @@ details .cont p+p{margin-top:10px}
 .c-pie .total strong{font:600 26px/1 var(--sans)}
 .vacio{color:var(--gris);padding:28px 0}
 
+
+/* software */
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
+.app{background:var(--lamina);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,150px);gap:20px;align-items:start}
+.app .cab-app{display:flex;align-items:center;gap:14px}
+.app .cab-app img{width:56px;height:56px;border-radius:14px;background:var(--blanco)}
+.app h3{font:600 28px/1 var(--sans);letter-spacing:-.03em}
+.app .lema{color:#3A352E;margin-top:4px;font-size:15px}
+.beta{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--papaya);color:#fff;padding:6px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+.app p.d{margin-top:16px;font-size:16px;color:#3A352E}
+.app .datos{margin-top:14px;font:500 12px/1.6 var(--mono);color:var(--gris);letter-spacing:.03em}
+.app .btn{margin-top:20px;width:100%}
+.app .cap{width:100%;aspect-ratio:9/19;object-fit:cover;object-position:top;border-radius:14px;border:1px solid var(--linea);background:var(--blanco)}
+.aviso-beta{margin-top:20px;font-size:15px;color:#3A352E;max-width:70ch}
+.aviso-beta b{color:var(--tinta)}
+@media (max-width:640px){.app{grid-template-columns:minmax(0,1fr)}.app .cap{width:62%;justify-self:center}}
 @media (max-width:900px){
   .prod-pag,.dos{grid-template-columns:minmax(0,1fr)}
   .ficha{position:static}
@@ -281,6 +297,7 @@ details .cont p+p{margin-top:10px}
 <div class="menu" id="menu" aria-hidden="true">
   <nav aria-label="Principal">
     <a href="#tienda" data-ruta="tienda">Tienda</a>
+    <a href="#software" data-ruta="software">Software</a>
     <a href="#taller" data-ruta="taller">Taller</a>
     <a href="#bitacora" data-ruta="bitacora">Bitácora</a>
     <a href="#preguntas" data-ruta="preguntas">Preguntas</a>
@@ -313,6 +330,31 @@ details .cont p+p{margin-top:10px}
     <div class="carrusel" id="carrusel"></div>
   </div>
 
+
+  <div class="env bloque" style="padding-bottom:0">
+    <div class="titulo"><h2>Software del taller</h2><a class="btn borde" href="#software">Ver todo <span class="fl"></span></a></div>
+    <div class="apps">
+      <article class="app">
+        <div>
+          <div class="cab-app"><img src="s/svar-icono.png" alt=""><div><h3>Svar<span class="beta">Beta</span></h3><p class="lema">Cuestionarios, una pregunta a la vez.</p></div></div>
+          <p class="d">Convierte formularios para tildar en un cuestionario cómodo de responder desde el celular. El profesional manda un link corto; quien responde contesta una pregunta por pantalla y le envía el resumen. Las respuestas no pasan por ningún servidor.</p>
+          <p class="datos">Gratis · Celular, tablet o compu · Se instala desde el navegador</p>
+          <a class="btn lleno" href="https://svar.fuge1618.com/" target="_blank" rel="noopener">Abrir e instalar <span class="fl"></span></a>
+        </div>
+        <img class="cap" src="s/svar.jpg" alt="Pantalla de Svar" loading="lazy">
+      </article>
+      <article class="app">
+        <div>
+          <div class="cab-app"><img src="s/smagsbord-icono.png" alt=""><div><h3>Smagsbord<span class="beta">Beta</span></h3><p class="lema">Recetas de familia.</p></div></div>
+          <p class="d">Guarda tus recetas siempre con el mismo formato y te acompaña a cocinarlas paso a paso, con un modo cocina pensado para la tablet o el celular en la mesada.</p>
+          <p class="datos">Gratis · Celular, tablet o compu · Se instala desde el navegador</p>
+          <a class="btn lleno" href="https://fuge1618.github.io/smagsbord/" target="_blank" rel="noopener">Abrir e instalar <span class="fl"></span></a>
+        </div>
+        <img class="cap" src="s/smagsbord.jpg" alt="Pantalla de Smagsbord" loading="lazy">
+      </article>
+    </div>
+    <p class="aviso-beta"><b>Son versiones Beta:</b> funcionan y se pueden usar, pero todavía no están terminadas y pueden cambiar. Para instalarlas, abrí el link y elegí “Instalar app” o “Agregar a pantalla de inicio”.</p>
+  </div>
   <div class="env bloque">
     <div class="porque">
       <img src="r/negra.jpg" alt="Kort negro cerrado, de perfil sobre la mesa">
@@ -441,6 +483,35 @@ details .cont p+p{margin-top:10px}
   </div>
 </section>
 
+
+<!-- ================= SOFTWARE ================= -->
+<section class="vista" id="v-software" aria-label="Software">
+  <div class="env">
+    <div class="pag-cab"><h1>Software</h1><p>No todo lo que sale del taller se imprime. Estas son las aplicaciones que hago con el mismo criterio que los objetos: simples, cuidadas y sin vueltas.</p></div>
+    <div class="apps">
+      <article class="app">
+        <div>
+          <div class="cab-app"><img src="s/svar-icono.png" alt=""><div><h3>Svar<span class="beta">Beta</span></h3><p class="lema">Cuestionarios, una pregunta a la vez.</p></div></div>
+          <p class="d">Convierte formularios para tildar en un cuestionario cómodo de responder desde el celular. El profesional manda un link corto; quien responde contesta una pregunta por pantalla y le envía el resumen. Las respuestas no pasan por ningún servidor.</p>
+          <p class="datos">Gratis · Celular, tablet o compu · Se instala desde el navegador</p>
+          <a class="btn lleno" href="https://svar.fuge1618.com/" target="_blank" rel="noopener">Abrir e instalar <span class="fl"></span></a>
+        </div>
+        <img class="cap" src="s/svar.jpg" alt="Pantalla de Svar" loading="lazy">
+      </article>
+      <article class="app">
+        <div>
+          <div class="cab-app"><img src="s/smagsbord-icono.png" alt=""><div><h3>Smagsbord<span class="beta">Beta</span></h3><p class="lema">Recetas de familia.</p></div></div>
+          <p class="d">Guarda tus recetas siempre con el mismo formato y te acompaña a cocinarlas paso a paso, con un modo cocina pensado para la tablet o el celular en la mesada.</p>
+          <p class="datos">Gratis · Celular, tablet o compu · Se instala desde el navegador</p>
+          <a class="btn lleno" href="https://fuge1618.github.io/smagsbord/" target="_blank" rel="noopener">Abrir e instalar <span class="fl"></span></a>
+        </div>
+        <img class="cap" src="s/smagsbord.jpg" alt="Pantalla de Smagsbord" loading="lazy">
+      </article>
+    </div>
+    <p class="aviso-beta"><b>Son versiones Beta:</b> funcionan y se pueden usar, pero todavía no están terminadas y pueden cambiar. Para instalarlas, abrí el link y elegí “Instalar app” o “Agregar a pantalla de inicio”.</p>
+    <div style="height:clamp(56px,8vw,112px)"></div>
+  </div>
+</section>
 <!-- ================= BITÁCORA ================= -->
 <section class="vista" id="v-bitacora" aria-label="Bitácora">
   <div class="env">
@@ -491,7 +562,7 @@ details .cont p+p{margin-top:10px}
 <footer class="pie">
   <div class="env">
     <div class="cols">
-      <div><h4>Tienda</h4><a href="#tienda">Objetos</a><a href="#kort">Kort</a></div>
+      <div><h4>Tienda</h4><a href="#tienda">Objetos</a><a href="#software">Software</a></div>
       <div><h4>Taller</h4><a href="#taller">Quién hace esto</a><a href="#bitacora">Bitácora</a></div>
       <div><h4>Ayuda</h4><a href="#preguntas">Preguntas</a><a href="#preguntas">Envíos</a></div>
       <div><h4>Seguir</h4><a href="https://www.instagram.com/fuge.1618/">Instagram</a><a href="https://www.tiktok.com/@fuge.1618">TikTok</a></div>
@@ -568,7 +639,7 @@ const MSJ=['Diseñado y hecho en Argentina','Tienda online <b>próximamente</b>'
 setInterval(()=>{mi=(mi+1)%MSJ.length;document.getElementById('barra').innerHTML=MSJ[mi]},4000);
 
 // rutas
-const RUTAS=['inicio','tienda','kort','bitacora','taller','preguntas'];
+const RUTAS=['inicio','tienda','kort','software','bitacora','taller','preguntas'];
 function ir(){
   const h=(location.hash||'#inicio').slice(1),v=RUTAS.includes(h)?h:'inicio';
   document.querySelectorAll('.vista').forEach(s=>s.classList.toggle('activa',s.id==='v-'+v));
